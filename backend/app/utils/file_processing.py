@@ -1,9 +1,18 @@
+# app/utils/file_processing.py
+
 import os
 from pdfminer.high_level import extract_text as extract_pdf_text
 from docx import Document
-from flask import current_app as app
+
+print("Loading file_processing.py...")
+
+def allowed_file(filename):
+    print("allowed_file function called.")
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in {'txt', 'pdf', 'docx'}
 
 def read_file_content(filepath):
+    print("read_file_content function called.")
     if filepath.endswith('.txt'):
         with open(filepath, 'r') as file:
             return file.read()
@@ -15,6 +24,7 @@ def read_file_content(filepath):
         return "Unsupported file type."
 
 def read_docx_content(filepath):
+    print("read_docx_content function called.")
     doc = Document(filepath)
     content = []
     for para in doc.paragraphs:

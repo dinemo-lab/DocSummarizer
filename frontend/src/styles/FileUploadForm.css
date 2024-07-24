@@ -1,0 +1,41 @@
+.dropzone {
+    border: 2px dashed #cccccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropzone:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropzone p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .success {
+    color: green;
+    margin-top: 10px;
+  }
+  
+  .file-content, .summary-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px;
+  }
+  

@@ -1,6 +1,11 @@
+# app/routes/upload.py
+
+from ..utils.summarizer import summarize_text
 from flask import Blueprint, request, jsonify, current_app
-from app.file_handler import read_file_content
 import os
+from ..utils.file_processing import allowed_file, read_file_content
+
+print("Loading upload.py...")
 
 upload_bp = Blueprint('upload', __name__)
 
@@ -18,14 +23,20 @@ def upload_file():
         return jsonify({'error': 'File type not allowed'}), 400
 
     try:
-        file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename)
+        filename = file.filename
+        file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         
-        file_content = read_file_content(file_path)
-        return jsonify({'filename': file.filename, 'content': file_content})
+        file_content = read_file_content(file_path) 
+        summary = summarize_text(file_content)
+        
+        return jsonify({
+            'message': 'File uploaded successfully',
+            'file': {
+                'filename': filename,
+                'content': file_content,
+                'summary':summary
+            }
+        })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']

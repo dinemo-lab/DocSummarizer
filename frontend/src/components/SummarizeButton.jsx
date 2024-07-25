@@ -1,4 +1,4 @@
-// src/components/SummarizeButton.jsx
+
 import PropTypes from 'prop-types';
 
 

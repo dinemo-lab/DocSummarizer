@@ -1,4 +1,3 @@
-# app/utils/file_processing.py
 
 import os
 from pdfminer.high_level import extract_text as extract_pdf_text

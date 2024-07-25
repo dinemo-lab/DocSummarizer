@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import homeImage from "../assets/icon.png";
 
-
 const Home = () => {
   return (
     <div className="home-container">
@@ -17,8 +16,6 @@ const Home = () => {
           Get Started
         </Link>
       </main>
-
-     
     </div>
   );
 };

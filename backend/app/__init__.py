@@ -11,8 +11,8 @@ def create_app():
     app.config.from_object('app.config.Config')
     
     # Register blueprints
-    from .routes.upload import upload_bp
-    from .routes.summarize import summarize_bp
+    from app.routes.upload import upload_bp
+    from app.routes.summarize import summarize_bp
     
     app.register_blueprint(upload_bp)
     app.register_blueprint(summarize_bp)

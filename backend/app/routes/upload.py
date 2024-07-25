@@ -1,6 +1,3 @@
-# app/routes/upload.py
-
-from ..utils.summarizer import summarize_text
 from flask import Blueprint, request, jsonify, current_app
 import os
 from ..utils.file_processing import allowed_file, read_file_content
@@ -27,15 +24,13 @@ def upload_file():
         file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         
-        file_content = read_file_content(file_path) 
-        summary = summarize_text(file_content)
+        file_content = read_file_content(file_path)
         
         return jsonify({
             'message': 'File uploaded successfully',
             'file': {
                 'filename': filename,
-                'content': file_content,
-                'summary':summary
+                'content': file_content
             }
         })
     except Exception as e:

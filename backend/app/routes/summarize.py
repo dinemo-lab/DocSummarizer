@@ -6,6 +6,8 @@ summarize_bp = Blueprint('summarize', __name__)
 @summarize_bp.route('/summarize', methods=['POST'])
 def summarize():
     data = request.get_json()
+    print("Received data:", data)  # Debugging line
+    
     text = data.get('text', '')
     
     if not text:

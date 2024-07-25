@@ -2,9 +2,16 @@
 import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
 import '../styles/DropzoneComponent.css';
+import { useCallback } from 'react';
 
-const DropzoneComponent = ({ onDrop }) => {
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+const DropzoneComponent = ({ onDrop}) => {
+
+   const onDropCallback = useCallback((acceptedFiles)=>{
+    onDrop(acceptedFiles);
+   },[onDrop])
+
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop :onDropCallback});
 
   return (
     <div {...getRootProps()} className="dropzone">
@@ -14,6 +21,7 @@ const DropzoneComponent = ({ onDrop }) => {
       ) : (
         <p>Drag & drop a file here, or click to select one</p>
       )}
+       <button className='Upload-btn'>Upload</button>
     </div>
   );
 };
